@@ -78,17 +78,17 @@ var grammar = {
         }
         },
     {"name": "S_for$string$1", "symbols": [{"literal":"일"}, {"literal":" "}, {"literal":"때"}, {"literal":" "}, {"literal":"까"}, {"literal":"지"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "S_for$ebnf$1$subexpression$1", "symbols": ["STATEMENTS", {"literal":"\n"}]},
+    {"name": "S_for$ebnf$1$subexpression$1", "symbols": ["STATEMENTS", "NL"]},
     {"name": "S_for$ebnf$1", "symbols": ["S_for$ebnf$1$subexpression$1"]},
-    {"name": "S_for$ebnf$1$subexpression$2", "symbols": ["STATEMENTS", {"literal":"\n"}]},
+    {"name": "S_for$ebnf$1$subexpression$2", "symbols": ["STATEMENTS", "NL"]},
     {"name": "S_for$ebnf$1", "symbols": ["S_for$ebnf$1", "S_for$ebnf$1$subexpression$2"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "S_for$string$2", "symbols": [{"literal":"해"}, {"literal":"줘"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "S_for", "symbols": ["EXPRESSIONS", "_", "S_for$string$1", "_", {"literal":"\n"}, "S_for$ebnf$1", "S_for$string$2"], "postprocess": 
+    {"name": "S_for", "symbols": ["EXPRESSIONS", "_", "S_for$string$1", "NL", "S_for$ebnf$1", "S_for$string$2"], "postprocess": 
         function(d) {
         	return {
         		type:"S_for",
         		cond: d[0],
-        		statements: { type: "S_statements", statements: d[5].map(r => r[0]) }
+        		statements: { type: "S_statements", statements: d[4].map(r => r[0]) }
         	}
         }
         },

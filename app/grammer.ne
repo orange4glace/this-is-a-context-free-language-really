@@ -48,12 +48,12 @@ S_if2 -> "혹시 " _ EXPRESSIONS _ ("니?"|"이니?"|"야?") _ "그럼" NL S_if 
 %}
 
 
-S_for -> EXPRESSIONS _ "일 때 까지" _ "\n" (STATEMENTS "\n"):+ "해줘" {%
+S_for -> EXPRESSIONS _ "일 때 까지" NL (STATEMENTS NL):+ "해줘" {%
 	function(d) {
 		return {
 			type:"S_for",
 			cond: d[0],
-			statements: { type: "S_statements", statements: d[5].map(r => r[0]) }
+			statements: { type: "S_statements", statements: d[4].map(r => r[0]) }
 		}
 	}
 %}
