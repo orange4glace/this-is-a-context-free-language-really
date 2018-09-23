@@ -40,6 +40,9 @@ body {
         color: white;
         background: #495788;
       }
+      &.error {
+        background: #b73838;
+      }
     }
 
     > .comment {

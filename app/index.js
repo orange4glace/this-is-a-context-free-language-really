@@ -236,6 +236,7 @@ function Evaluate(string) {
     `)
   } catch (e) {
     console.log(e);
+    $currentLine.addClass('error');
     $("#result").append(`
       <pre class='error'>${e}</pre>
     `)
