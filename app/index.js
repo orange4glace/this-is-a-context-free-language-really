@@ -1,5 +1,5 @@
 import nearley from 'nearley';
-import grammar from './grammer.js';
+import grammar from './grammar.js';
 
 import style from './style.scss';
 
@@ -16,7 +16,9 @@ function Parse(string) {
 
 const SE = {
   "NO_OP": s => {
-    return {}
+    return {
+      type: "NO_OP"
+    }
   },
   "S_statements": s => {
     for (var i = 0; i < s.statements.length; i ++) 
@@ -270,6 +272,9 @@ function AppendComment(text) {
 
 $(document).ready(() => {
   AddLine();
+
+// Parse grammar
+var root = Parse(`[몇단] 은 1927 더하기 3041`)
 
 AppendComment("변수 선언하기");
 AppendComment("[<i><b>VARIABLE</b></i>](은|는) <i><b>EXPRESSION</b></i>");
