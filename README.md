@@ -1,10 +1,14 @@
 # this-is-a-context-free-language-really
 
-###2018 Summer, Compiler
+### 2018 Summer, Compiler
 
 ## Demo & Run your code
 
 http://orange4glace.com/pnu/201324456/2018compiler/
+
+## Grammar?
+
+https://github.com/orange4glace/this-is-a-context-free-language-really/blob/master/grammar.cfg
 
 ```
 [구구단을외자구구단을외자]는 '구구단을 외자 구구단을 외자 '
