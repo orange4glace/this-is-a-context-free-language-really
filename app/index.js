@@ -227,13 +227,23 @@ function Evaluate(string) {
   console.log("Evaluate", string);
   $currentLine.removeAttr('contenteditable');
   $currentLine.removeClass('active');
-  let parsed = Parse(string);
-  let log = Gen(parsed);
-  $("#logger").append(`
-    <pre>${JSON.stringify(log, null, 4)}</pre>
-  `)
-  $("#logger").scrollTop($("#logger")[0].scrollHeight);
-  AddLine();
+  let parsed, log;
+  try {
+    parsed = Parse(string);
+    log = Gen(parsed);
+    $("#logger").append(`
+      <pre>${JSON.stringify(log, null, 4)}</pre>
+    `)
+  } catch (e) {
+    console.log(e);
+    $("#result").append(`
+      <pre class='error'>${e}</pre>
+    `)
+    $("#result").scrollTop($("#result")[0].scrollHeight);
+  } finally {
+    $("#logger").scrollTop($("#logger")[0].scrollHeight);
+    AddLine();
+  }
 }
 
 function onKeydown(e) {
@@ -272,9 +282,6 @@ function AppendComment(text) {
 
 $(document).ready(() => {
   AddLine();
-
-// Parse grammar
-var root = Parse(`[몇단] 은 1927 더하기 3041`)
 
 AppendComment("변수 선언하기");
 AppendComment("[<i><b>VARIABLE</b></i>](은|는) <i><b>EXPRESSION</b></i>");

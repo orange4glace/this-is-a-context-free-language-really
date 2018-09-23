@@ -61,7 +61,7 @@ body {
       box-sizing: border-box;
       background: #eee;
 
-      > div {
+      > div, > pre {
         box-sizing: border-box;
         padding: 5px 10px;
         border-bottom: 1px solid rgb(173, 173, 173);
@@ -71,6 +71,10 @@ body {
         }
         &:nth-child(even) {
           background: #dedede;
+        }
+
+        &.error {
+          background: #ffb9b9;
         }
       }
     }
